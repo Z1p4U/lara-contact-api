@@ -29,10 +29,10 @@ Route::prefix("v1")->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
 
         Route::apiResource('contact', ContactController::class);
+        Route::get("contact/trash-bin", [ContactController::class, 'trash']);
         Route::delete("contact/{id}/trash", [ContactController::class, 'destroy']);
         Route::patch("contact/{id}/restore", [ContactController::class, 'restore']);
         Route::delete("contact/{id}/delete", [ContactController::class, 'forceDelete']);
-        Route::get("contact/trash", [ContactController::class, 'trash']);
 
         Route::post("logout", [ApiAuthController::class, 'logout']);
         Route::post("logout-all", [ApiAuthController::class, 'logoutAll']);
